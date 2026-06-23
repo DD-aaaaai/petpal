@@ -1,0 +1,130 @@
+# ghibli-design — Single Source of Truth
+# Generated via the hue skill (Description path). Ghibli/Shinkai naturalism.
+# All app CSS tokens (styles.css :root) derive from this file.
+
+name: "Ghibli"
+philosophy: "A hand-painted natural world you live inside. Cobalt skies, lush meadow greens, warm paper light, one sunset-orange accent. The UI is a quiet layer floating over a living landscape — soft, round, breathing."
+primary_mode: "light"
+brand_domain: "virtual pet companion"
+brand_type: "content-rich"   # the painted scene is the hero, not the components
+mono_for_code: false
+mono_for_metrics: false
+
+primitives:
+  colors:
+    neutral:            # warm paper-tinted greens (matches natural palette)
+      50:  "#FBF7EC"    # warm paper (canvas)
+      100: "#F3EEDE"
+      200: "#E6DECB"
+      300: "#D2C8B0"
+      400: "#A9A187"
+      500: "#8A8470"
+      600: "#675f4e"
+      700: "#4f4a3b"
+      800: "#3a3629"
+      900: "#3F4A36"    # deep moss ink (primary text)
+      950: "#222a1d"
+    brand:              # meadow green — primary accent, 500 = primary
+      50:  "#EEF6EA"
+      100: "#DCEDD3"
+      200: "#BBDcaa"
+      300: "#97C98A"
+      400: "#7FBC7E"
+      500: "#6FAE74"
+      600: "#4E8A57"
+      700: "#3c6e45"
+      800: "#2c5235"
+      900: "#1f3a26"
+      950: "#122315"
+    sunset:             # sunset orange — point accent (CTA / highlight)
+      50:  "#FDF0E2"
+      500: "#E8924E"
+      900: "#7a4519"
+    sky:                # cobalt sky family (scene gradients)
+      300: "#AED8EE"
+      500: "#5AABE2"
+      700: "#3a82c0"
+    red:   { 50: "#FCEFEC", 500: "#D9694E", 900: "#6e2a1c" }
+    green: { 50: "#EEF6EA", 500: "#5FA56A", 900: "#1f3a26" }
+    amber: { 50: "#FBF1DC", 500: "#E0A23B", 900: "#6e4310" }
+  spacing: [0, 2, 4, 8, 12, 16, 20, 24, 32, 40, 48, 64, 96]
+  radii: [0, 8, 12, 16, 18, 20, 999]    # round, storybook
+
+tokens:
+  colors:
+    light:
+      background: "{neutral.50}"
+      surface1: "{neutral.100}"
+      surface2: "{neutral.200}"
+      surface3: "{neutral.300}"
+      border: "{neutral.200}"
+      border_visible: "{neutral.300}"
+      text1: "{neutral.900}"
+      text2: "{neutral.600}"
+      text3: "{neutral.500}"
+      accent: "{brand.500}"
+      accent_strong: "{brand.600}"
+      accent_subtle: "{brand.50}"
+      point: "{sunset.500}"        # sunset-orange highlight
+    success: "{green.500}"
+    warning: "{amber.500}"
+    error: "{red.500}"
+
+  typography:
+    # Latin display = rounded storybook (Baloo 2). Body = humanist sans (Hanken Grotesk).
+    # Chinese falls back to system rounded/black faces. Loaded via Google Fonts in index.html.
+    display: { family: "Baloo 2", size: "26px", weight: 600, line_height: 1.2 }
+    body:    { family: "Hanken Grotesk", size: "15px", weight: 400, line_height: 1.55 }
+
+  radii:
+    control: 14      # buttons, inputs
+    component: 18    # cards, action buttons
+    bubble: 20       # speech bubbles, toasts
+    pill: 999
+
+  spacing: { 2xs: 2, xs: 4, sm: 8, md: 16, lg: 24, xl: 32, 2xl: 48 }
+
+  elevation:
+    strategy: "subtle"   # soft warm diffused shadow, low opacity
+    shadow: "0 6px 20px rgba(90,110,80,0.18)"
+
+  motion:
+    personality: "smooth"   # like wind / breathing — no bounce
+    easing: "ease-in-out"
+    duration_fast: "160ms"
+    duration_normal: "300ms"
+
+  hero_stage:
+    preset: "painterly-no-hero"
+    observed_style:
+      description: "Hand-painted Ghibli meadow: cobalt sky to warm horizon, billowing cumulus clouds, layered green hills, a round tree, swaying foreground grass. The painted scene IS the hero."
+      where_used: ["home full-screen background"]
+    background:
+      medium: "painterly"
+      color_mode: "palette"
+      saturation: "vibrant"      # Ghibli skies are saturated
+      light_source: "top"
+      falloff: "soft"
+      vignette: "off"
+      texture: "paint"
+      motion: "drift"            # clouds drift, grass sways
+      intensity: "bold"          # the scene is allowed to be lush
+      safe_zone: "masked-for-text"
+      color_palette: ["#5AABE2", "#AED8EE", "#FDE7C8", "#6FAE74", "#FBF7EC"]
+    relation:
+      type: "flat"
+      bleed: 0
+    disclaimer: "Code-drawn SVG approximation of a Ghibli painted scene. Film-grade fidelity needs raster art via Avatar.RASTER."
+
+  iconography:
+    observed_style:
+      description: "Soft rounded emoji + simple round glyphs; warm, friendly, low detail."
+      stroke_weight: "regular"
+      corner_treatment: "fully-round"
+      fill_style: "mixed"
+      form_language: "humanist"
+      visual_density: "minimal"
+    fallback_kit:
+      name: "Emoji + system"
+      match_score: "medium"
+      match_reasoning: "Pet companion app uses emoji for warmth and zero-friction recognition; matches the soft humanist direction without needing an icon CDN."
