@@ -25,15 +25,18 @@
   <!-- TEMP DEBUG: surface any uncaught error on-screen (remove after diagnosing) -->
   <script>
     (function () {
+      var BUILD = 'debug-3';
       function show(label, msg) {
+        var full = '[' + label + '] ' + msg;
         var box = document.getElementById('__errbox');
         if (!box) {
           box = document.createElement('div');
           box.id = '__errbox';
-          box.style.cssText = 'position:fixed;left:0;right:0;bottom:0;z-index:99999;max-height:50%;overflow:auto;background:#b00020;color:#fff;font:12px/1.4 monospace;padding:10px;white-space:pre-wrap;word-break:break-word';
+          box.style.cssText = 'position:fixed;left:0;right:0;bottom:0;z-index:99999;max-height:60%;overflow:auto;background:#b00020;color:#fff;font:12px/1.4 monospace;padding:10px;white-space:pre-wrap;word-break:break-word';
           document.body.appendChild(box);
         }
-        box.textContent += '[' + label + '] ' + msg + '\n\n';
+        box.textContent += full + '\n\n';
+        try { alert('PetPal ' + BUILD + ' 报错:\n' + full); } catch (e) {}
       }
       window.addEventListener('error', function (e) {
         show('ERROR', (e.message || e.error) + '\n@ ' + (e.filename || '') + ':' + (e.lineno || '') + ':' + (e.colno || '') + (e.error && e.error.stack ? '\n' + e.error.stack : ''));
@@ -41,6 +44,13 @@
       window.addEventListener('unhandledrejection', function (e) {
         var r = e.reason;
         show('PROMISE', (r && r.message ? r.message : r) + (r && r.stack ? '\n' + r.stack : ''));
+      });
+      // 屏幕角落印一个版本号,确认加载的是新版而非缓存
+      window.addEventListener('DOMContentLoaded', function () {
+        var v = document.createElement('div');
+        v.textContent = 'build ' + BUILD;
+        v.style.cssText = 'position:fixed;top:2px;right:4px;z-index:99999;font:10px monospace;color:#fff;background:rgba(0,0,0,.45);padding:1px 5px;border-radius:6px;pointer-events:none';
+        document.body.appendChild(v);
       });
     })();
   </script>
